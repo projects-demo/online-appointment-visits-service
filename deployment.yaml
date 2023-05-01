@@ -1,0 +1,28 @@
+
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: visits-service-deployment-v1
+  labels:
+    app: visits-service-dep-label
+
+spec:
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: visits-service-v1
+
+  template: # template for the pods
+    metadata:
+      labels:
+        app: visits-service-v1
+
+    spec:
+      containers:
+      - name: visits-service-ver1
+        image: saurabh2204/online-appointment-visits-service:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9898
